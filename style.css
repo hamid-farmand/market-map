@@ -62,3 +62,12 @@ select {
     color: #2a9d8f;
     min-height: 25px; /* برای جلوگیری از جابجایی布局 */
 }
+
+/* استایل جدید برای نام سازمان */
+.organization-name {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
