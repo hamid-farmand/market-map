@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نقشه راهنمای میدان میوه و تره بار</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- فونت فارگان برای زیبایی متن -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>نقشه راهنمای میدان</h1>
+        
+        <div class="map-container">
+            <!-- نام عکس خود را اینجا قرار دهید -->
+            <img src="نقشه راهنما میدان میوه و تره بار کاشان.jpg">
+        </div>
+
+        <div class="form-container">
+            <label for="zone-select">بخش مورد نظر را انتخاب کنید:</label>
+            <select id="zone-select">
+                <option value="">-- لطفاً انتخاب کنید --</option>
+            </select>
+
+            <label for="stall-select" id="stall-label" style="display: none;">غرفه یا کسب‌وکار را انتخاب کنید:</label>
+            <select id="stall-select" disabled>
+                <option value="">-- ابتدا بخش را انتخاب کنید --</option>
+            </select>
+            
+            <div id="details-box">
+                <p id="owner-name">نام صاحب غرفه / کسب‌وکار: <span></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
