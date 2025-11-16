@@ -1,100 +1,134 @@
-// --- اینجا اطلاعات غرفه‌ها را بر اساس بخش‌ها وارد کنید ---
-// هر بخش (A, B, C, ...) یک آرایه از کسب‌وکارها دارد.
-// هر کسب‌وکار یک نام و یک توضیح کوتاه (اختیاری) دارد.
-const zoneData = {
-    "A": [
-        { name: "نگهبانی", details: "حفاظت فیزیکی" },
-    ],
-    "B": [
-        { name: "سرویس بهداشتی", details: "" },
-    ],
-    "C": [
-        { name: "باسکول", details: "باسکول 60 تنی" },
-    ],
-    "D": [
-        { name: "اموال و انبار", details: "انبار شهرداری کاشان" },
-    ],
-    "E": [
-        { name: "ساختمان مرکزی", details: "مدیریت ، عمران ، تاسیسات" },
-    ],
-    "F": [
-        { name: " کشاورزی بانک", details: "دستگاه خودپرداز" },
-    ],
-    "G": [
-        { name: "دفتر اتحادیه صنف میوه و تره بار", details: "دفتر مرکزی" },
-    ],
-    "H": [
-        { name: "مسجد", details: "" },
-    ],
-    "I": [
-        { name: "سرویس بهداشتی و حمام", details: "" },
-    ],
-    "J": [
-        { name: "مغازه لبنیاتی", details: "" },
-   
-    ],
-    "K": [
-        { name: "رستوران", details: "" },
-    ],
-    "L": [
-        { name: "خوابگاه", details: "" },
-    ]
+// اینجا اطلاعات غرفه‌ها را وارد کنید
+// کلید (عدد) شماره غرفه و مقدار (متن) نام صاحب غرفه است
+const stallData = {
+    1: "حسن فدوی کاشانی",
+    2: "اصغر و حسین جعفری آزاد",
+    3: "مجید فدوی کاشانی (عباس)",
+    4: "رحمت اله فدوی کاشانی",
+    5: "محمد ابراهیم شویدیان",
+    6: "سارا کریمی",
+    7: "سارا کریمی",
+    7.1: "سارا کریمی",
+    8: "سارا کریمی",
+    9: "سارا کریمی",
+    10: "سارا کریمی",
+    11: "سارا کریمی",
+    12: "سارا کریمی",
+    13: "سارا کریمی",
+    14: "سارا کریمی",
+    15: "سارا کریمی",
+    16: "سارا کریمی",
+    17: "سارا کریمی",
+    17.1: "سارا کریمی",
+    18: "سارا کریمی",
+    19: "سارا کریمی",
+    20: "سارا کریمی",
+    21: "سارا کریمی",
+    22: "سارا کریمی",
+    23: "سارا کریمی",
+    24: "سارا کریمی",
+    25: "سارا کریمی",
+    26: "سارا کریمی",
+    27: "سارا کریمی",
+    27.1: "سارا کریمی",
+    28: "سارا کریمی",
+    29: "سارا کریمی",
+    30: "سارا کریمی",
+    31: "سارا کریمی",
+    32: "سارا کریمی",
+    33: "سارا کریمی",
+    34: "سارا کریمی",
+    35: "سارا کریمی",
+    36: "سارا کریمی",
+    37: "سارا کریمی",
+    38: "سارا کریمی",
+    39: "سارا کریمی",5: "سارا کریمی",
+    40: "سارا کریمی",
+    41: "سارا کریمی",
+    42: "سارا کریمی",
+    43: "سارا کریمی",
+    44: "سارا کریمی",
+    45: "سارا کریمی",
+    46: "سارا کریمی",
+    47: "سارا کریمی",
+    48: "سارا کریمی",
+    49: "سارا کریمی",
+    50: "سارا کریمی",
+    51: "سارا کریمی",
+    52: "سارا کریمی",
+    53: "سارا کریمی",
+    54: "سارا کریمی",
+    55: "سارا کریمی",
+    56: "سارا کریمی",
+    57: "سارا کریمی",
+    58: "سارا کریمی",
+    59: "سارا کریمی",
+    60: "سارا کریمی",
+    61: "سارا کریمی",
+    62: "سارا کریمی",
+    63: "سارا کریمی",
+    64: "سارا کریمی",
+    65: "سارا کریمی",5: "سارا کریمی",
+    66: "سارا کریمی",
+    67: "سارا کریمی",
+    68: "سارا کریمی",
+    69: "سارا کریمی",
+    70: "سارا کریمی",
+    71: "سارا کریمی",
+    72: "سارا کریمی",
+    73: "سارا کریمی",
+    74: "سارا کریمی",
+    75: "سارا کریمی",
+    76: "سارا کریمی",
+    77: "سارا کریمی",
+    78: "سارا کریمی",
+    79: "سارا کریمی",
+    80: "سارا کریمی",
+    81: "سارا کریمی",
+    82: "سارا کریمی",
+    83: "سارا کریمی",
+    84: "سارا کریمی",
+    85: "سارا کریمی",
+    86: "سارا کریمی",
+    87: "سارا کریمی",
+    88: "سارا کریمی",
+    89: "سارا کریمی",
+    90: "سارا کریمی",
+    91: "سارا کریمی",
+    92: "سارا کریمی",
+    93: "سارا کریمی",
+    94: "سارا کریمی",
+    95: "سارا کریمی",
+    96: "سارا کریمی",
+    97: "سارا کریمی",
+    98: "سارا کریمی",
+    99: "سارا کریمی",
+    100: "سارا کریمی",
+    101: "سارا کریمی",
+    102: "سارا کریمی",
+    103: "سارا کریمی",
 };
 
-// --- گرفتن عناصر HTML ---
-const zoneSelect = document.getElementById('zone-select');
+// گرفتن عناصر HTML
 const stallSelect = document.getElementById('stall-select');
-const stallLabel = document.getElementById('stall-label');
 const ownerNameSpan = document.querySelector('#owner-name span');
-const detailsBox = document.getElementById('details-box');
 
-// --- پر کردن لیست اول (بخش‌ها) ---
-Object.keys(zoneData).sort().forEach(zoneLetter => {
+// پر کردن لیست کشویی به صورت خودکار از روی اطلاعات
+Object.keys(stallData).sort((a, b) => a - b).forEach(stallNumber => {
     const option = document.createElement('option');
-    option.value = zoneLetter;
-    option.textContent = `بخش ${zoneLetter}`;
-    zoneSelect.appendChild(option);
+    option.value = stallNumber;
+    option.textContent = `غرفه ${stallNumber}`;
+    stallSelect.appendChild(option);
 });
 
-// --- رویداد برای تغییر بخش ---
-zoneSelect.addEventListener('change', function() {
-    const selectedZone = this.value;
-    // پاک کردن لیست دوم
-    stallSelect.innerHTML = '<option value="">-- لطفاً انتخاب کنید --</option>';
-    ownerNameSpan.textContent = '';
-    detailsBox.style.display = 'none';
-
-    if (selectedZone) {
-        stallLabel.style.display = 'block';
-        stallSelect.disabled = false;
-
-        // پر کردن لیست دوم (غرفه‌های آن بخش)
-        zoneData[selectedZone].forEach((stall, index) => {
-            const option = document.createElement('option');
-            // استفاده از یک مقدار منحصر به فرد
-            option.value = `${selectedZone}-${index}`;
-            option.textContent = stall.name;
-            stallSelect.appendChild(option);
-        });
-    } else {
-        stallLabel.style.display = 'none';
-        stallSelect.disabled = true;
-    }
-});
-
-// --- رویداد برای تغییر غرفه ---
+// اضافه کردن رویداد برای زمانی که کاربر یک گزینه را انتخاب می‌کند
 stallSelect.addEventListener('change', function() {
-    const selectedStallValue = this.value;
-    
-    if (selectedStallValue) {
-        const [zone, index] = selectedStallValue.split('-');
-        const stallInfo = zoneData[zone][parseInt(index)];
-        
-        ownerNameSpan.innerHTML = `${stallInfo.name} <small>${stallInfo.details}</small>`;
-        detailsBox.style.display = 'flex';
-    } else {
-        ownerNameSpan.textContent = '';
-        detailsBox.style.display = 'none';
-    }
+    const selectedStall = this.value;
 
+    if (selectedStall) {
+        const ownerName = stallData[selectedStall];
+        ownerNameSpan.textContent = ownerName; // نمایش نام صاحب غرفه
+    } else {
+        ownerNameSpan.textContent = ""; // پاک کردن نام اگر چیزی انتخاب نشده بود
+    }
 });
