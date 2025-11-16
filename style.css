@@ -56,13 +56,6 @@ select {
     margin-bottom: 20px;
 }
 
-#owner-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #2a9d8f;
-    min-height: 25px; /* برای جلوگیری از جابجایی布局 */
-}
-
 /* استایل جدید برای نام سازمان */
 .organization-name {
     text-align: center;
@@ -70,4 +63,18 @@ select {
     color: #555;
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+/* --- تغییرات در این بخش اعمال شده --- */
+
+#owner-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
+    min-height: 25px;
+}
+
+/* این استایل جدید، رنگ نام صاحب غرفه را به رنگ قبلی برمی‌گرداند */
+#owner-name span {
+    color: #2a9d8f; /* رنگ نام صاحب غرفه */
 }
