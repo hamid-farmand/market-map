@@ -17,27 +17,19 @@
         
         <div class="map-container">
             <!-- نام عکس خود را اینجا قرار دهید -->
-            <img src="نقشه راهنما میدان میوه و تره بار کاشان.jpg">
+            <img src="your-map-image.jpg" alt="نقشه میدان میوه و تره بار">
         </div>
 
         <div class="form-container">
-            <label for="zone-select">بخش مورد نظر را انتخاب کنید:</label>
-            <select id="zone-select">
+            <label for="stall-select">شماره غرفه را انتخاب کنید:</label>
+            <select id="stall-select">
                 <option value="">-- لطفاً انتخاب کنید --</option>
+                <!-- گزینه‌ها به صورت خودکار توسط جاوا اسکریپت اضافه می‌شوند -->
             </select>
-
-            <label for="stall-select" id="stall-label" style="display: none;">بخش را انتخاب کنید:</label>
-            <select id="stall-select" disabled>
-                <option value="">-- ابتدا بخش را انتخاب کنید --</option>
-            </select>
-            
-            <div id="details-box">
-                <p id="owner-name">نام بخش  / : <span></span></p>
-            </div>
+            <p id="owner-name">نام صاحب غرفه: <span></span></p>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>
