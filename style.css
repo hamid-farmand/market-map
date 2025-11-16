@@ -54,18 +54,8 @@ select {
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
+    font-family: 'Vazirmatn', sans-serif; /* این خط اضافه شد */
 }
-
-/* استایل جدید برای نام سازمان */
-.organization-name {
-    text-align: center;
-    font-size: 18px;
-    color: #555;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-/* --- تغییرات در این بخش اعمال شده --- */
 
 #owner-name {
     font-size: 18px;
@@ -77,4 +67,13 @@ select {
 /* این استایل جدید، رنگ نام صاحب غرفه را به رنگ قبلی برمی‌گرداند */
 #owner-name span {
     color: #2a9d8f; /* رنگ نام صاحب غرفه */
+}
+
+/* استایل جدید برای نام سازمان */
+.organization-name {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
