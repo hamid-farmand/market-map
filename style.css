@@ -47,37 +47,6 @@ label {
     color: #555;
 }
 
-select {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    font-family: 'Vazirmatn', sans-serif; /* این خط اضافه شد */
-}
-
-#owner-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
-    min-height: 25px;
-}
-
-/* این استایل جدید، رنگ نام صاحب غرفه را به رنگ قبلی برمی‌گرداند */
-#owner-name span {
-    color: #2a9d8f; /* رنگ نام صاحب غرفه */
-}
-
-/* استایل جدید برای نام سازمان */
-.organization-name {
-    text-align: center;
-    font-size: 18px;
-    color: #555;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
 /* استایل برای هر بخش جستجو */
 .search-block {
     margin-bottom: 25px;
@@ -87,22 +56,49 @@ select {
     background-color: #fafafa;
 }
 
-/* استایل برای فیلد ورودی متنی */
-input[type="text"] {
+/* استایل مشترک برای لیست کشویی و فیلد متنی */
+select, input[type="text"] {
     width: 80%;
     padding: 10px;
     font-size: 16px;
-    font-family: 'Vazirmatn', sans-serif;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-family: 'Vazirmatn', sans-serif;
     box-sizing: border-box; /* برای محاسبه صحیح عرض */
 }
 
-/* استایل برای نتیجه جستجوی نام */
+/* استایل متن نتیجه جستجوی شماره غرفه */
+#owner-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
+    min-height: 25px;
+}
+
+/* استایل متن نتیجه جستجوی نام (مانند بالایی) */
 #stall-number-result {
     font-size: 18px;
     font-weight: bold;
-    color: #007bff; /* رنگ آبی برای متمایز کردن */
+    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
     min-height: 25px;
+}
+
+/* این استایل، رنگ نام صاحب غرفه را مشخص می‌کند */
+#owner-name span {
+    color: #2a9d8f; /* رنگ نام صاحب غرفه */
+}
+
+/* این استایل، رنگ شماره غرفه پیدا شده را مشخص می‌کند */
+#stall-number-result span {
+    color: #2a9d8f; /* رنگ شماره غرفه */
+}
+
+/* استایل جدید برای نام سازمان */
+.organization-name {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
