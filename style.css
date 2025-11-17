@@ -25,7 +25,8 @@ h1 {
     margin-bottom: 20px;
 }
 
-.map-container img {
+/* این استایل باعث می‌شود SVG مانند عکس واکنش‌گرا باشد */
+.map-container svg {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
@@ -125,10 +126,10 @@ select, input[type="text"] {
     background-color: #f0f0f0;
 }
 
-/* این کد را به انتهای فایل style.css اضافه کنید */
+/* استایل جدید برای هایلایت کردن غرفه */
 .stall-highlight {
-    fill: yellow !important;
-    stroke: red !important;
+    fill: #ffeb3b !important; /* رنگ زرد روشن */
+    stroke: #ff5722 !important; /* حاشیه قرمز نارنجی */
     stroke-width: 3px !important;
-    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
+    filter: drop-shadow(0 0 5px rgba(255, 87, 34, 0.7));
 }
