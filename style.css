@@ -124,3 +124,11 @@ select, input[type="text"] {
 #owner-suggestions-list li:hover {
     background-color: #f0f0f0;
 }
+
+/* این کد را به انتهای فایل style.css اضافه کنید */
+.stall-highlight {
+    fill: yellow !important;
+    stroke: red !important;
+    stroke-width: 3px !important;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
+}
