@@ -131,4 +131,41 @@ stallSelect.addEventListener('change', function() {
     } else {
         ownerNameSpan.textContent = ""; // پاک کردن نام اگر چیزی انتخاب نشده بود
     }
+// --- شروع کد جستجوی جدید بر اساس نام ---
+
+// گرفتن عناصر HTML مربوط به جستجوی نام
+const ownerSearchInput = document.getElementById('owner-search');
+const stallNumberResultSpan = document.querySelector('#stall-number-result span');
+
+// اضافه کردن رویداد برای زمانی که کاربر در فیلد جستجو تایپ می‌کند
+ownerSearchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase().trim(); // گرفتن مقدار و حذف فاصله‌های اضافی
+
+    // اگر فیلد جستجو خالی بود، نتیجه را هم پاک کن
+    if (searchTerm === "") {
+        stallNumberResultSpan.textContent = "";
+        return;
+    }
+
+    const foundStalls = []; // آرایه‌ای برای نگهداری شماره غرفه‌های پیدا شده
+
+    // پیمایش در تمام اطلاعات غرفه‌ها
+    for (const [stallNumber, ownerName] of Object.entries(stallData)) {
+        // بررسی اینکه آیا نام صاحب غرفه، عبارت جستجو شده را در خود دارد یا نه
+        if (ownerName.toLowerCase().includes(searchTerm)) {
+            foundStalls.push(stallNumber); // اگر پیدا شد، شماره غرفه را به آرایه اضافه کن
+        }
+    }
+
+    // نمایش نتیجه
+    if (foundStalls.length > 0) {
+        // اگر یک یا چند نتیجه پیدا شد، آن‌ها را با کاما از هم جدا کن و نمایش بده
+        stallNumberResultSpan.textContent = foundStalls.join(', ');
+    } else {
+        // اگر هیچ نتیجه‌ای پیدا نشد
+        stallNumberResultSpan.textContent = "یافت نشد";
+    }
+});
+
+// --- پایان کد جستجوی جدید ---
 });
