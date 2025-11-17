@@ -102,3 +102,47 @@ select, input[type="text"] {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+/* استایل برای کانتینر پیشنهادها */
+.autocomplete-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 20px auto; /* وسط چین کردن و ایجاد فاصله */
+}
+
+/* استایل برای لیست پیشنهادها */
+#owner-suggestions-list {
+    position: absolute;
+    top: 100%; /* دقیقاً زیر فیلد ورودی قرار می‌گیرد */
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    max-height: 200px; /* حداکثر ارتفاع لیست */
+    overflow-y: auto; /* اگر زیاد بود، اسکرول بخورد */
+    z-index: 1000; /* روی سایر عناصر قرار بگیرد */
+    list-style-type: none; /* حذف bullet های لیست */
+    padding: 0;
+    margin: 0;
+    display: none; /* به صورت پیش فرض مخفی است */
+    border-radius: 0 0 5px 5px;
+}
+
+/* کلاسی برای نمایش لیست */
+#owner-suggestions-list.active {
+    display: block; /* وقتی این کلاس اضافه شود، لیست نمایش داده می‌شود */
+}
+
+/* استایل برای هر آیتم در لیست پیشنهادها */
+#owner-suggestions-list li {
+    padding: 10px;
+    cursor: pointer; /* نشانگر ماوس به شکل دست شود */
+    font-family: 'Vazirmatn', sans-serif;
+    text-align: right;
+}
+
+/* استایل برای وقتی ماوس روی آیتم‌ها می‌رود */
+#owner-suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
