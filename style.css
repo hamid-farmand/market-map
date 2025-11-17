@@ -47,7 +47,6 @@ label {
     color: #555;
 }
 
-/* استایل برای هر بخش جستجو */
 .search-block {
     margin-bottom: 25px;
     padding: 15px;
@@ -56,7 +55,6 @@ label {
     background-color: #fafafa;
 }
 
-/* استایل مشترک برای لیست کشویی و فیلد متنی */
 select, input[type="text"] {
     width: 80%;
     padding: 10px;
@@ -65,36 +63,20 @@ select, input[type="text"] {
     border: 1px solid #ccc;
     margin-bottom: 20px;
     font-family: 'Vazirmatn', sans-serif;
-    box-sizing: border-box; /* برای محاسبه صحیح عرض */
+    box-sizing: border-box;
 }
 
-/* استایل متن نتیجه جستجوی شماره غرفه */
-#owner-name {
+#owner-name, #stall-number-result {
     font-size: 18px;
     font-weight: bold;
-    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
+    color: red;
     min-height: 25px;
 }
 
-/* استایل متن نتیجه جستجوی نام (مانند بالایی) */
-#stall-number-result {
-    font-size: 18px;
-    font-weight: bold;
-    color: red; /* رنگ کل عبارت به قرمز تغییر کرد */
-    min-height: 25px;
+#owner-name span, #stall-number-result span {
+    color: #2a9d8f;
 }
 
-/* این استایل، رنگ نام صاحب غرفه را مشخص می‌کند */
-#owner-name span {
-    color: #2a9d8f; /* رنگ نام صاحب غرفه */
-}
-
-/* این استایل، رنگ شماره غرفه پیدا شده را مشخص می‌کند */
-#stall-number-result span {
-    color: #2a9d8f; /* رنگ شماره غرفه */
-}
-
-/* استایل جدید برای نام سازمان */
 .organization-name {
     text-align: center;
     font-size: 18px;
@@ -103,46 +85,42 @@ select, input[type="text"] {
     margin-bottom: 10px;
 }
 
-/* استایل برای کانتینر پیشنهادها */
+/* استایل‌های پیشنهاد خودکار */
 .autocomplete-container {
     position: relative;
     width: 80%;
-    margin: 0 auto 20px auto; /* وسط چین کردن و ایجاد فاصله */
+    margin: 0 auto 20px auto;
 }
 
-/* استایل برای لیست پیشنهادها */
 #owner-suggestions-list {
     position: absolute;
-    top: 100%; /* دقیقاً زیر فیلد ورودی قرار می‌گیرد */
+    top: 100%;
     left: 0;
     right: 0;
     border: 1px solid #ccc;
     border-top: none;
     background-color: white;
-    max-height: 200px; /* حداکثر ارتفاع لیست */
-    overflow-y: auto; /* اگر زیاد بود، اسکرول بخورد */
-    z-index: 1000; /* روی سایر عناصر قرار بگیرد */
-    list-style-type: none; /* حذف bullet های لیست */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style-type: none;
     padding: 0;
     margin: 0;
-    display: none; /* به صورت پیش فرض مخفی است */
+    display: none;
     border-radius: 0 0 5px 5px;
 }
 
-/* کلاسی برای نمایش لیست */
 #owner-suggestions-list.active {
-    display: block; /* وقتی این کلاس اضافه شود، لیست نمایش داده می‌شود */
+    display: block;
 }
 
-/* استایل برای هر آیتم در لیست پیشنهادها */
 #owner-suggestions-list li {
     padding: 10px;
-    cursor: pointer; /* نشانگر ماوس به شکل دست شود */
+    cursor: pointer;
     font-family: 'Vazirmatn', sans-serif;
     text-align: right;
 }
 
-/* استایل برای وقتی ماوس روی آیتم‌ها می‌رود */
 #owner-suggestions-list li:hover {
     background-color: #f0f0f0;
 }
