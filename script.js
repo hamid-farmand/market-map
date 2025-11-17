@@ -131,41 +131,66 @@ stallSelect.addEventListener('change', function() {
     } else {
         ownerNameSpan.textContent = ""; // پاک کردن نام اگر چیزی انتخاب نشده بود
     }
-// --- شروع کد جستجوی جدید بر اساس نام ---
+// --- شروع کد پیشنهاد خودکار بر اساس نام ---
 
-// گرفتن عناصر HTML مربوط به جستجوی نام
+// گرفتن عناصر HTML جدید
 const ownerSearchInput = document.getElementById('owner-search');
+const suggestionsList = document.getElementById('owner-suggestions-list');
 const stallNumberResultSpan = document.querySelector('#stall-number-result span');
+const autocompleteContainer = document.querySelector('.autocomplete-container');
 
-// اضافه کردن رویداد برای زمانی که کاربر در فیلد جستجو تایپ می‌کند
+// رویداد برای زمانی که کاربر در فیلد جستجو تایپ می‌کند
 ownerSearchInput.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase().trim(); // گرفتن مقدار و حذف فاصله‌های اضافی
+    const searchTerm = this.value.toLowerCase().trim();
+    suggestionsList.innerHTML = ''; // پاک کردن پیشنهادهای قبلی
 
-    // اگر فیلد جستجو خالی بود، نتیجه را هم پاک کن
-    if (searchTerm === "") {
+    if (searchTerm.length < 1) { // اگر چیزی ننوشته بود، لیست را مخفی کن
+        suggestionsList.classList.remove('active');
         stallNumberResultSpan.textContent = "";
         return;
     }
 
-    const foundStalls = []; // آرایه‌ای برای نگهداری شماره غرفه‌های پیدا شده
-
-    // پیمایش در تمام اطلاعات غرفه‌ها
+    const matchingOwners = [];
+    // جستجو در میان تمام صاحبان غرفه
     for (const [stallNumber, ownerName] of Object.entries(stallData)) {
-        // بررسی اینکه آیا نام صاحب غرفه، عبارت جستجو شده را در خود دارد یا نه
         if (ownerName.toLowerCase().includes(searchTerm)) {
-            foundStalls.push(stallNumber); // اگر پیدا شد، شماره غرفه را به آرایه اضافه کن
+            matchingOwners.push({ number: stallNumber, name: ownerName });
         }
     }
 
-    // نمایش نتیجه
-    if (foundStalls.length > 0) {
-        // اگر یک یا چند نتیجه پیدا شد، آن‌ها را با کاما از هم جدا کن و نمایش بده
-        stallNumberResultSpan.textContent = foundStalls.join(', ');
+    // اگر نتیجه‌ای پیدا شد، آن را نمایش بده
+    if (matchingOwners.length > 0) {
+        matchingOwners.forEach(owner => {
+            const li = document.createElement('li');
+            li.textContent = owner.name;
+            // ذخیره شماره غرفه به صورت یک داده مخفی در هر آیتم
+            li.dataset.stallNumber = owner.number;
+            suggestionsList.appendChild(li);
+        });
+        suggestionsList.classList.add('active'); // نمایش لیست پیشنهادها
     } else {
-        // اگر هیچ نتیجه‌ای پیدا نشد
-        stallNumberResultSpan.textContent = "یافت نشد";
+        suggestionsList.classList.remove('active'); // مخفی کردن لیست اگر نتیجه‌ای نبود
     }
 });
 
-// --- پایان کد جستجوی جدید ---
+// رویداد برای زمانی که کاربر روی یکی از پیشنهادها کلیک می‌کند
+suggestionsList.addEventListener('click', function(e) {
+    // اطمینان از اینکه روی یک آیتم li کلیک شده
+    if (e.target.tagName === 'LI') {
+        const selectedStallNumber = e.target.dataset.stallNumber;
+        const selectedOwnerName = e.target.textContent;
+
+        ownerSearchInput.value = selectedOwnerName; // قرار دادن نام انتخابی در فیلد ورودی
+        stallNumberResultSpan.textContent = selectedStallNumber; // نمایش شماره غرفه
+        suggestionsList.classList.remove('active'); // مخفی کردن لیست پیشنهادها
+    }
 });
+
+// رویداد برای مخفی کردن لیست وقتی کاربر در هر جای دیگری از صفحه کلیک می‌کند
+document.addEventListener('click', function(e) {
+    if (!autocompleteContainer.contains(e.target)) {
+        suggestionsList.classList.remove('active');
+    }
+});
+
+// --- پایان کد پیشنهاد خودکار ---
