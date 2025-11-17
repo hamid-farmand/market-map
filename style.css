@@ -77,3 +77,32 @@ select {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+/* استایل برای هر بخش جستجو */
+.search-block {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+/* استایل برای فیلد ورودی متنی */
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Vazirmatn', sans-serif;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* برای محاسبه صحیح عرض */
+}
+
+/* استایل برای نتیجه جستجوی نام */
+#stall-number-result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff; /* رنگ آبی برای متمایز کردن */
+    min-height: 25px;
+}
