@@ -1,5 +1,4 @@
 // اینجا اطلاعات غرفه‌ها را وارد کنید
-// کلید (عدد) شماره غرفه و مقدار (متن) نام صاحب غرفه است
 const stallData = {
     1: "حسن فدوی کاشانی",
     2: "اصغر و حسین جعفری آزاد",
@@ -80,7 +79,7 @@ const stallData = {
     74: "سید مرتضی صادقیان",
     75: "نام مشخص نیست",
     76: "ماشااله و ناصر اصغری زاده",
-    77: "نام مشخص نیست", // مقدار خالی بود، اصلاح شد
+    77: "نام مشخص نیست",
     78: "ابوالفضل چلوئی حسن آبادی - میلاد پورشیخعلی",
     79: "مصطفی ابوالحسنی - حسام بهره دار",
     80: "علی گیلاسی",
@@ -109,11 +108,10 @@ const stallData = {
     103: "جعفر خاری زاده",
 };
 
-// گرفتن عناصر HTML
+// --- منطق جستجو بر اساس شماره غرفه ---
 const stallSelect = document.getElementById('stall-select');
 const ownerNameSpan = document.querySelector('#owner-name span');
 
-// پر کردن لیست کشویی به صورت خودکار از روی اطلاعات
 Object.keys(stallData).sort((a, b) => a - b).forEach(stallNumber => {
     const option = document.createElement('option');
     option.value = stallNumber;
@@ -121,76 +119,65 @@ Object.keys(stallData).sort((a, b) => a - b).forEach(stallNumber => {
     stallSelect.appendChild(option);
 });
 
-// اضافه کردن رویداد برای زمانی که کاربر یک گزینه را انتخاب می‌کند
 stallSelect.addEventListener('change', function() {
     const selectedStall = this.value;
-
     if (selectedStall) {
         const ownerName = stallData[selectedStall];
-        ownerNameSpan.textContent = ownerName; // نمایش نام صاحب غرفه
+        ownerNameSpan.textContent = ownerName;
     } else {
-        ownerNameSpan.textContent = ""; // پاک کردن نام اگر چیزی انتخاب نشده بود
+        ownerNameSpan.textContent = "";
     }
-// --- شروع کد پیشنهاد خودکار بر اساس نام ---
+});
 
-// گرفتن عناصر HTML جدید
+// --- منطق جستجوی خودکار بر اساس نام ---
 const ownerSearchInput = document.getElementById('owner-search');
 const suggestionsList = document.getElementById('owner-suggestions-list');
 const stallNumberResultSpan = document.querySelector('#stall-number-result span');
 const autocompleteContainer = document.querySelector('.autocomplete-container');
 
-// رویداد برای زمانی که کاربر در فیلد جستجو تایپ می‌کند
 ownerSearchInput.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase().trim();
-    suggestionsList.innerHTML = ''; // پاک کردن پیشنهادهای قبلی
+    suggestionsList.innerHTML = '';
 
-    if (searchTerm.length < 1) { // اگر چیزی ننوشته بود، لیست را مخفی کن
+    if (searchTerm.length < 1) {
         suggestionsList.classList.remove('active');
         stallNumberResultSpan.textContent = "";
         return;
     }
 
     const matchingOwners = [];
-    // جستجو در میان تمام صاحبان غرفه
     for (const [stallNumber, ownerName] of Object.entries(stallData)) {
         if (ownerName.toLowerCase().includes(searchTerm)) {
             matchingOwners.push({ number: stallNumber, name: ownerName });
         }
     }
 
-    // اگر نتیجه‌ای پیدا شد، آن را نمایش بده
     if (matchingOwners.length > 0) {
         matchingOwners.forEach(owner => {
             const li = document.createElement('li');
             li.textContent = owner.name;
-            // ذخیره شماره غرفه به صورت یک داده مخفی در هر آیتم
             li.dataset.stallNumber = owner.number;
             suggestionsList.appendChild(li);
         });
-        suggestionsList.classList.add('active'); // نمایش لیست پیشنهادها
+        suggestionsList.classList.add('active');
     } else {
-        suggestionsList.classList.remove('active'); // مخفی کردن لیست اگر نتیجه‌ای نبود
+        suggestionsList.classList.remove('active');
     }
 });
 
-// رویداد برای زمانی که کاربر روی یکی از پیشنهادها کلیک می‌کند
 suggestionsList.addEventListener('click', function(e) {
-    // اطمینان از اینکه روی یک آیتم li کلیک شده
     if (e.target.tagName === 'LI') {
         const selectedStallNumber = e.target.dataset.stallNumber;
         const selectedOwnerName = e.target.textContent;
 
-        ownerSearchInput.value = selectedOwnerName; // قرار دادن نام انتخابی در فیلد ورودی
-        stallNumberResultSpan.textContent = selectedStallNumber; // نمایش شماره غرفه
-        suggestionsList.classList.remove('active'); // مخفی کردن لیست پیشنهادها
+        ownerSearchInput.value = selectedOwnerName;
+        stallNumberResultSpan.textContent = selectedStallNumber;
+        suggestionsList.classList.remove('active');
     }
 });
 
-// رویداد برای مخفی کردن لیست وقتی کاربر در هر جای دیگری از صفحه کلیک می‌کند
 document.addEventListener('click', function(e) {
     if (!autocompleteContainer.contains(e.target)) {
         suggestionsList.classList.remove('active');
     }
 });
-
-// --- پایان کد پیشنهاد خودکار ---
