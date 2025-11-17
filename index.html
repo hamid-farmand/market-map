@@ -32,10 +32,13 @@
                 <p id="owner-name">نام صاحب غرفه: <span></span></p>
             </div>
 
-            <!-- بخش جدید جستجو بر اساس نام صاحب غرفه -->
+                        <!-- بخش جدید جستجو بر اساس نام صاحب غرفه -->
             <div class="search-block">
                 <label for="owner-search">جستجو بر اساس نام صاحب غرفه:</label>
-                <input type="text" id="owner-search" placeholder="مثلاً: حسینی یا شرکت هنگان">
+                <div class="autocomplete-container">
+                    <input type="text" id="owner-search" placeholder="مثلاً: حسینی یا شرکت هنگان">
+                    <ul id="owner-suggestions-list"></ul>
+                </div>
                 <p id="stall-number-result">شماره غرفه: <span></span></p>
             </div>
         </div>
@@ -43,3 +46,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
