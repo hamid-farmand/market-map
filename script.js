@@ -208,3 +208,13 @@ document.addEventListener('click', function(e) {
         suggestionsList.classList.remove('active');
     }
 });
+
+// --- منطق صفحه خوشامدگویی (Splash Screen) ---
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const splashScreen = document.getElementById('splash-screen');
+        if (splashScreen) {
+            splashScreen.classList.add('hidden');
+        }
+    }, 3000); // 3000 میلی‌ثانیه = 3 ثانیه
+});
