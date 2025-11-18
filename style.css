@@ -133,3 +133,22 @@ select, input[type="text"] {
     stroke-width: 3px !important;
     filter: drop-shadow(0 0 5px rgba(255, 87, 34, 0.7));
 }
+
+/* --- تغییرات جدید --- */
+
+/* استایل برای عنوان قرمز جدید */
+.security-title {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* کوچک کردن عنوان اصلی در موبایل */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px; /* سایز کوچکتر برای موبایل */
+    }
+}
