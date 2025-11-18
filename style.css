@@ -152,3 +152,42 @@ select, input[type="text"] {
         font-size: 24px; /* سایز کوچکتر برای موبایل */
     }
 }
+
+/* استایل‌های صفحه خوشامدگویی (Splash Screen) */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* استفاده از ارتفاع کل صفحه */
+    background-color: #ffffff; /* پس‌زمینه سفید */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* چیدمان عمودی */
+    z-index: 10000; /* قرار گرفتن بالاتر از همه عناصر */
+    opacity: 1;
+    transition: opacity 0.5s ease-out; /* افکت محو شدن نرم */
+}
+
+.splash-screen h1 {
+    font-size: 26px;
+    color: #333; /* رنگ تیره برای عنوان اصلی */
+    text-align: center;
+    margin: 0 20px 15px 20px;
+    font-weight: 700;
+}
+
+.splash-subtitle {
+    font-size: 18px;
+    color: #007bff; /* رنگ آبی برای زیرعنوان */
+    text-align: center;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* کلاسی برای مخفی کردن صفحه خوشامدگویی */
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
