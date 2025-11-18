@@ -149,7 +149,8 @@ select:focus, input[type="text"]:focus {
 /* --- استایل لیست پیشنهادها --- */
 .autocomplete-container {
     position: relative;
-    width: 100%;
+    /* width: 100%; <-- این خط حذف شد تا رفتار فیلد با لیست کشویی یکسان شود */
+    margin-bottom: 15px;
 }
 
 #owner-suggestions-list {
