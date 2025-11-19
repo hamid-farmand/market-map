@@ -40,7 +40,6 @@ body {
     text-align: center;
 }
 
-/* --- کارت‌های اطلاعات با افکت نئون متحرک --- */
 .info-card {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.4); /* پس‌زمینه تاریک‌تر برای خوانایی بهتر */
@@ -100,6 +99,29 @@ body {
         0 0 12px #ff0055,
         0 0 16px #ff0055;
 }
+
+/* --- استایل نمایش تاریخ و زمان (با چیدمان جدید) --- */
+.datetime-display {
+    margin-top: 20px;
+    display: flex; /* استفاده از فلکس برای چیدمان */
+    justify-content: space-between; /* تاریخ در چپ، زمان در راست */
+    align-items: center;
+    font-family: 'Vazirmatn', sans-serif; /* فونت یکپارچه */
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+}
+
+.date-container, .time-container {
+    /* کانتینرهای جدا برای تاریخ و زمان */
+}
+
+#current-time {
+    color: #00ffff; /* رنگ فیروزه‌ای برای زمان */
+    text-shadow: 0 0 5px #00ffff; /* افکت نئون برای زمان */
+}
+
 
 /* --- عنوان اصلی --- */
 h1 {
@@ -247,8 +269,6 @@ select:focus, input[type="text"]:focus {
     fill: #fef08a !important; /* زرد روشن */
     stroke: #ff0000 !important; /* رنگ قرمز خالص */
     stroke-width: 3px !important;
-    /* حذف drop-shadow قبلی و اضافه کردن افکت جدید */
-    filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000);
     animation: neon-border-spin 2s linear infinite; /* انیمیشن چرخش */
 }
 
@@ -292,6 +312,14 @@ select:focus, input[type="text"]:focus {
         display: block;
         margin: 8px auto;
         width: 90%;
+    }
+
+    /* --- تغییرات نمایش تاریخ و زمان در موبایل --- */
+    .datetime-display {
+        flex-direction: column; /* عمودی کردن چیدمان */
+        align-items: center;
+        gap: 8px; /* فاصله بین تاریخ و زمان */
+        font-size: 16px; /* کمی کوچکتر کردن فونت */
     }
 
     h1 {
