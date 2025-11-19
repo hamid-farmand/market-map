@@ -234,3 +234,65 @@ document.addEventListener('click', function(e) {
         suggestionsList.classList.remove('active');
     }
 });
+
+// --- منطق ساعت و تاریخ زنده ---
+
+// تابع کمکی برای تبدیل تاریخ میلادی به شمسی
+function toJalaali(gy, gm, gd) {
+    var g_d_m, jy, jm, jd, gy2, days;
+    g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+    if (gy > 1600) {
+        jy = 979;
+        gy -= 1600;
+    } else {
+        jy = 0;
+        gy -= 621;
+    }
+    if (gm > 2) {
+        gy2 = gy + 1;
+    } else {
+        gy2 = gy;
+    }
+    days = (365 * gy) + ((parseInt((gy2 + 3) / 4))) - ((parseInt((gy2 + 99) / 100))) + ((parseInt((gy2 + 399) / 400))) - 80 + gd + g_d_m[gm - 1];
+    jy += 33 * parseInt(days / 12053);
+    days %= 12053;
+    jy += 4 * parseInt(days / 1461);
+    days %= 1461;
+    if (days > 365) {
+        jy += parseInt((days - 1) / 365);
+        days = (days - 1) % 365;
+    }
+    jm = (days < 186) ? 1 + parseInt(days / 31) : 7 + parseInt((days - 186) / 30);
+    jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+    return [jy, jm, jd];
+}
+
+// تابع کمکی برای اضافه کردن صفر به اعداد تک رقمی
+function padZero(num) {
+    return (num < 10 ? '0' : '') + num;
+}
+
+// تابع اصلی برای آپدیت تاریخ و زمان
+function updateDateTime() {
+    const now = new Date();
+    const gregorianYear = now.getFullYear();
+    const gregorianMonth = now.getMonth() + 1; // ماه‌ها از 0 شروع می‌شوند
+    const gregorianDay = now.getDate();
+
+    const [jalaaliYear, jalaaliMonth, jalaaliDay] = toJalaali(gregorianYear, gregorianMonth, gregorianDay);
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    const dateStr = `${jalaaliYear}/${padZero(jalaaliMonth)}/${padZero(jalaaliDay)}`;
+    const timeStr = `${padZero(hours)}:${padZero(minutes)}`;
+
+    document.getElementById('current-date').textContent = dateStr;
+    document.getElementById('current-time').textContent = timeStr;
+}
+
+// شروع ساعت پس از بارگذاری کامل صفحه
+document.addEventListener('DOMContentLoaded', function() {
+    updateDateTime(); // یک بار فورا اجرا می‌شود
+    setInterval(updateDateTime, 1000); // سپس هر ثانیه اجرا می‌شود
+});
