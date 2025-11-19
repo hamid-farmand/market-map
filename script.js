@@ -109,21 +109,49 @@ const stallData = {
     "103": { name: "حاج اصغر خاری زاده - حسین خداوردیان", number: "غرفه 103" },
 };
 
-// --- تابع هایلایت کردن غرفه ---
+// --- تابع هایلایت کردن غرفه (با افکت زوم) ---
 function highlightStall(stallId) {
-    // پاک کردن هایلایت قبلی
     const previousHighlight = document.querySelector('.stall-highlight');
     if (previousHighlight) {
         previousHighlight.classList.remove('stall-highlight');
     }
 
-    // اگر شماره غرفه وجود داشت، جدید را هایلایت کن
+    const svgElement = document.querySelector('.map-container svg');
+    // خروج از حالت زوم قبلی
+    if (svgElement) {
+        svgElement.classList.remove('zoomed');
+    }
+
     if (stallId) {
         const stallElement = document.getElementById(`stall-${stallId}`);
-        if (stallElement) {
+        
+        if (stallElement && svgElement) {
+            // اضافه کردن کلاس هایلایت با انیمیشن نئون
             stallElement.classList.add('stall-highlight');
-            // اسکرول کردن نقشه به سمت غرفه هایلایت شده
-            stallElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+
+            // --- شروع منطق زوم ---
+            // گرفتن کادر عنصر غرفه در داخل SVG
+            const bbox = stallElement.getBBox();
+            const centerX = bbox.x + bbox.width / 2;
+            const centerY = bbox.y + bbox.height / 2;
+
+            // گرفتن viewBox اصلی SVG
+            const viewBox = svgElement.viewBox.baseVal;
+
+            // محاسبه نقطه شروع زوم به صورت درصد
+            const originX = (centerX / viewBox.width) * 100;
+            const originY = (centerY / viewBox.height) * 100;
+
+            // اعمال زوم
+            svgElement.style.transformOrigin = `${originX}% ${originY}%`;
+            svgElement.classList.add('zoomed');
+
+            // تنظیم تایمر برای خروج از زوم بعد از 1 ثانیه
+            setTimeout(() => {
+                if (svgElement) {
+                    svgElement.classList.remove('zoomed');
+                }
+            }, 1000); // 1000 میلی‌ثانیه = 1 ثانیه
         }
     }
 }
@@ -132,9 +160,7 @@ function highlightStall(stallId) {
 const stallSelect = document.getElementById('stall-select');
 const ownerNameSpan = document.querySelector('#owner-name span');
 
-// پر کردن لیست کشویی
 Object.keys(stallData).sort((a, b) => {
-    // برای مرتب‌سازی صحیح اعداد به صورت رشته‌ای
     return parseFloat(a) - parseFloat(b);
 }).forEach(stallId => {
     const option = document.createElement('option');
@@ -208,4 +234,3 @@ document.addEventListener('click', function(e) {
         suggestionsList.classList.remove('active');
     }
 });
-
