@@ -40,16 +40,65 @@ body {
     text-align: center;
 }
 
+/* --- کارت‌های اطلاعات با افکت نئون متحرک --- */
 .info-card {
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(0, 0, 0, 0.4); /* پس‌زمینه تاریک‌تر برای خوانایی بهتر */
     color: var(--bg-white);
-    padding: 8px 18px;
-    margin: 5px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 8px;
+    border-radius: 25px;
     font-size: 15px;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    border: 1px solid;
+    box-shadow: 0 0 5px;
+    animation: neon-glow 2s infinite alternate; /* انیمیشن نئون */
+    transition: all 0.3s ease-in-out;
+}
+
+.organization-card {
+    border-color: #00ffff; /* رنگ نئون فیروزه‌ای */
+    box-shadow: 0 0 5px #00ffff;
+    /* افکت نئون اصلی برای متن */
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 4px #00ffff,
+        0 0 6px #00ffff,
+        0 0 8px #00ffff;
+}
+
+.security-card {
+    border-color: #ff0055; /* رنگ نئون قرمز */
+    box-shadow: 0 0 5px #ff0055;
+    /* افکت نئون اصلی برای متن */
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 4px #ff0055,
+        0 0 6px #ff0055,
+        0 0 8px #ff0055;
+}
+
+/* افکت قوی‌تر هنگام هاور */
+.info-card:hover {
+    transform: scale(1.05);
+}
+
+.organization-card:hover {
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 8px #00ffff,
+        0 0 12px #00ffff,
+        0 0 16px #00ffff;
+}
+
+.security-card:hover {
+    box-shadow: 0 0 15px #ff0055, 0 0 25px #ff0055;
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 8px #ff0055,
+        0 0 12px #ff0055,
+        0 0 16px #ff0055;
 }
 
 /* --- عنوان اصلی --- */
@@ -69,12 +118,19 @@ h1 {
     text-align: center;
 }
 
+/* --- استایل زوم روی نقشه --- */
 .map-container svg {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
+    transition: transform 0.4s ease-in-out; /* انیمیشن نرم برای زوم */
+    transform-origin: center center; /* نقطه شروع زوم از مرکز */
+}
+
+.map-container svg.zoomed {
+    transform: scale(2.5); /* میزان زوم */
 }
 
 /* --- کانتینر اصلی فرم‌ها --- */
@@ -149,7 +205,7 @@ select:focus, input[type="text"]:focus {
 /* --- استایل لیست پیشنهادها --- */
 .autocomplete-container {
     position: relative;
-    /* width: 100%; <-- این خط حذف شد تا رفتار فیلد با لیست کشویی یکسان شود */
+    width: 100%;
     margin-bottom: 15px;
 }
 
@@ -186,12 +242,34 @@ select:focus, input[type="text"]:focus {
     background-color: var(--bg-light);
 }
 
-/* --- استایل هایلایت غرفه --- */
+/* --- استایل هایلایت غرفه (با خط قرمز متحرک) --- */
 .stall-highlight {
     fill: #fef08a !important; /* زرد روشن */
-    stroke: var(--accent-red) !important;
+    stroke: #ff0000 !important; /* رنگ قرمز خالص */
     stroke-width: 3px !important;
-    filter: drop-shadow(0 0 6px rgba(229, 62, 62, 0.6));
+    /* حذف drop-shadow قبلی و اضافه کردن افکت جدید */
+    filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000);
+    animation: neon-border-spin 2s linear infinite; /* انیمیشن چرخش */
+}
+
+/* --- انیمیشن چرخش خط نئون قرمز --- */
+@keyframes neon-border-spin {
+    0% {
+        filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000) hue-rotate(0deg);
+    }
+    100% {
+        filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000) hue-rotate(-360deg);
+    }
+}
+
+/* --- انیمیشن افکت نئون کارت‌ها --- */
+@keyframes neon-glow {
+    from {
+        filter: brightness(1);
+    }
+    to {
+        filter: brightness(1.2);
+    }
 }
 
 /* --- رسپانسیو برای موبایل --- */
@@ -210,9 +288,9 @@ select:focus, input[type="text"]:focus {
 
     .info-card {
         font-size: 14px;
-        padding: 6px 14px;
+        padding: 8px 16px;
         display: block;
-        margin: 5px auto;
+        margin: 8px auto;
         width: 90%;
     }
 
