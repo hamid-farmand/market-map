@@ -1,571 +1,334 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-
+/* --- پالت رنگی حرفه‌ای و یکپارچه --- */
 :root {
-    --primary: #0f766e;
-    --primary-dark: #115e59;
-    --primary-light: #14b8a6;
-
-    --secondary: #1e293b;
-    --secondary-light: #334155;
-
-    --accent: #f59e0b;
-    --accent-soft: #fbbf24;
-
-    --success: #16a34a;
-    --danger: #dc2626;
-    --warning: #d97706;
-
-    --bg-main: #f4f7fb;
-    --bg-card: #ffffff;
-    --bg-soft: #eef4f7;
-    --bg-dark: #0f172a;
-
-    --text-main: #0f172a;
-    --text-soft: #475569;
-    --text-muted: #64748b;
-    --text-white: #ffffff;
-
-    --border: #dbe3ea;
-    --border-strong: #cbd5e1;
-
-    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.12);
-
-    --radius-sm: 10px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-
-    --transition: all 0.25s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
+    --primary-dark: #1a365d;      /* آبی تیره برای هدر */
+    --primary-light: #3182ce;     /* آبی روشن برای فوکوس */
+    --accent-red: #e53e3e;         /* قرمز برای برچسب‌های نتیجه */
+    --accent-green: #38a169;       /* سبز برای مقادیر نتیجه */
+    --bg-light: #f7fafc;           /* پس‌زمینه روشن برای کارت‌ها */
+    --bg-white: #ffffff;           /* پس‌زمینه سفید اصلی */
+    --text-dark: #2d3748;          /* رنگ متن اصلی */
+    --text-muted: #718096;         /* رنگ متن کم‌اهمیت‌تر */
+    --border-color: #e2e8f0;       /* رنگ مرزها */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: #edf2f7; /* یک پس‌زمینه خاکستری روشن و یکدست برای کل صفحه */
+    margin: 0;
+    padding: 20px;
+    color: var(--text-dark);
     direction: rtl;
-    font-family: 'Vazirmatn', sans-serif;
-    background:
-        radial-gradient(circle at top right, rgba(20, 184, 166, 0.08), transparent 30%),
-        radial-gradient(circle at top left, rgba(245, 158, 11, 0.08), transparent 25%),
-        linear-gradient(180deg, #f8fbfd 0%, #f1f5f9 100%);
-    color: var(--text-main);
-    min-height: 100vh;
-    line-height: 1.8;
-    padding: 20px;
+    line-height: 1.6;
 }
 
-/* کانتینر اصلی */
 .container {
-    width: 100%;
-    max-width: 1450px;
+    max-width: 820px;
     margin: 0 auto;
-}
-
-/* هدر اصلی */
-.main-header {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    border-radius: var(--radius-lg);
-    padding: 28px 22px;
-    color: var(--text-white);
+    background-color: var(--bg-white);
+    border-radius: 12px;
     box-shadow: var(--shadow-lg);
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
+    overflow: hidden; /* برای گردی گوشه‌های هدر */
 }
 
-.main-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(120deg, rgba(255,255,255,0.10), transparent 40%),
-        radial-gradient(circle at 85% 20%, rgba(255,255,255,0.12), transparent 25%);
-    pointer-events: none;
-}
-
-.main-header > * {
-    position: relative;
-    z-index: 1;
-}
-
-.main-header h1,
-.main-header h2,
-.main-header h3 {
+/* --- هدر با رنگ ثابت و خوانا --- */
+.main-header {
+    background-color: var(--primary-dark);
+    padding: 25px;
     text-align: center;
-    color: var(--text-white);
-    text-shadow: none;
-    letter-spacing: 0;
 }
 
-.main-header h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.main-header h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    opacity: 0.95;
-    margin-bottom: 10px;
-}
-
-.main-header h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* کارت‌های عنوان بالای صفحه */
 .info-card {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    padding: 10px 18px;
-    margin: 8px 6px;
-    border-radius: 999px;
-    font-size: 0.95rem;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.4); /* پس‌زمینه تاریک‌تر برای خوانایی بهتر */
+    color: var(--bg-white);
+    padding: 10px 20px;
+    margin: 8px;
+    border-radius: 25px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--text-white);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
-    text-shadow: none;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: var(--transition);
+    border: 1px solid;
+    box-shadow: 0 0 5px;
+    animation: neon-glow 2s infinite alternate; /* انیمیشن نئون */
+    transition: all 0.3s ease-in-out;
 }
 
-.info-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.18);
+.organization-card {
+    border-color: #00ffff; /* رنگ نئون فیروزه‌ای */
+    box-shadow: 0 0 5px #00ffff;
+    /* افکت نئون اصلی برای متن */
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 4px #00ffff,
+        0 0 6px #00ffff,
+        0 0 8px #00ffff;
 }
 
-.organization-card,
 .security-card {
-    text-shadow: none;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+    border-color: #ff0055; /* رنگ نئون قرمز */
+    box-shadow: 0 0 5px #ff0055;
+    /* افکت نئون اصلی برای متن */
+    text-shadow: 
+        0 0 2px #fff,
+        0 0 4px #ff0055,
+        0 0 6px #ff0055,
+        0 0 8px #ff0055;
 }
 
-/* باکس تاریخ و ساعت */
+/* افکت قوی‌تر هنگام هاور */
+.info-card:hover {
+    transform: scale(1.05);
+}
+
+.organization-card:hover {
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 8px #00ffff,
+        0 0 12px #00ffff,
+        0 0 16px #00ffff;
+}
+
+.security-card:hover {
+    box-shadow: 0 0 15px #ff0055, 0 0 25px #ff0055;
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 8px #ff0055,
+        0 0 12px #ff0055,
+        0 0 16px #ff0055;
+}
+
+/* --- استایل نمایش تاریخ و زمان (اصلاح شده) --- */
 .datetime-display {
-    margin-top: 18px;
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.date-container,
-.time-container {
-    min-width: 170px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    padding: 12px 18px;
-    text-align: center;
-    color: var(--text-white);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
-}
-
-.date-container .label,
-.time-container .label {
-    display: block;
-    font-size: 0.85rem;
+    justify-content: space-between; /* تاریخ در چپ، زمان در راست */
+    align-items: center;
+    font-family: 'Vazirmatn', sans-serif; /* حذف monospace برای نمایش صحیح فارسی */
+    font-size: 18px;
     font-weight: 500;
-    opacity: 0.9;
-    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
 }
 
-#current-date,
 #current-time {
-    display: block;
-    font-family: 'Vazirmatn', sans-serif;
-    font-size: 1.15rem;
+    color: #00ffff; /* رنگ فیروزه‌ای برای زمان */
+    text-shadow: 0 0 5px #00ffff; /* افکت نئون برای زمان */
+}
+
+
+/* --- عنوان اصلی --- */
+h1 {
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 26px;
     font-weight: 700;
-    letter-spacing: 0;
-    color: var(--text-white);
-    text-shadow: none;
+    margin: 25px 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* چیدمان اصلی محتوا */
-.content-grid,
-.main-content,
-.page-content {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 24px;
-    align-items: start;
-}
-
-/* اگر در HTML این ساختارها نبودند، کارت‌ها همچنان مستقل درست دیده می‌شوند */
-.map-container,
-.form-container,
-.search-card,
-.panel-card,
-.card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
-
-/* کانتینر نقشه */
+/* --- کانتینر نقشه --- */
 .map-container {
-    padding: 18px;
-    overflow: hidden;
+    padding: 20px;
+    text-align: center;
 }
 
-.map-container h2,
-.map-container h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 14px;
-}
-
+/* --- استایل زوم روی نقشه --- */
 .map-container svg {
-    width: 100%;
+    max-width: 100%;
     height: auto;
-    display: block;
-    background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    transition: transform 0.45s ease;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.4s ease-in-out; /* انیمیشن نرم برای زوم */
+    transform-origin: center center; /* نقطه شروع زوم از مرکز */
 }
 
-/* حالت زوم SVG */
 .map-container svg.zoomed {
-    transform-origin: center center;
-    cursor: grab;
+    transform: scale(2.5); /* میزان زوم */
 }
 
-/* فرم‌ها و جستجو */
+/* --- کانتینر اصلی فرم‌ها --- */
 .form-container {
-    padding: 20px;
+    padding: 25px;
+    background-color: #f8fafc; /* کمی تیره‌تر از پس‌زمینه اصلی برای جدا شدن */
+    border-top: 1px solid var(--border-color);
 }
 
+/* --- کارت‌های جستجو با مرزبندی واضح --- */
 .search-card {
-    padding: 20px;
-    margin-bottom: 18px;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .search-card:last-child {
     margin-bottom: 0;
 }
 
-.form-container h2,
-.form-container h3,
-.search-card h2,
-.search-card h3 {
-    color: var(--secondary);
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 14px;
+.search-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
-.search-block {
-    margin-bottom: 18px;
-}
-
-.search-block:last-child {
-    margin-bottom: 0;
-}
-
-label {
+.search-card label {
     display: block;
-    margin-bottom: 8px;
-    color: var(--text-soft);
-    font-size: 0.95rem;
+    font-size: 17px;
     font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
 }
 
-select,
-input[type="text"],
-input[type="search"],
-input[type="number"],
-textarea {
+/* --- استایل ورودی‌ها و لیست کشویی --- */
+select, input[type="text"] {
     width: 100%;
-    height: 48px;
-    border: 1px solid var(--border-strong);
-    border-radius: 14px;
-    background: #fff;
-    padding: 0 14px;
+    padding: 12px 15px;
+    font-size: 16px;
     font-family: 'Vazirmatn', sans-serif;
-    font-size: 0.96rem;
-    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus, input[type="text"]:focus {
     outline: none;
-    transition: var(--transition);
-    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
-}
-
-textarea {
-    min-height: 120px;
-    height: auto;
-    padding: 14px;
-    resize: vertical;
-}
-
-select:focus,
-input[type="text"]:focus,
-input[type="search"]:focus,
-input[type="number"]:focus,
-textarea:focus {
     border-color: var(--primary-light);
-    box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
 }
 
-/* فیلدهای نتیجه */
-#owner-name,
-#stall-number-result {
-    width: 100%;
-    min-height: 52px;
-    display: flex;
-    align-items: center;
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
-    border: 1px solid var(--border);
-    color: var(--secondary);
-    font-size: 0.98rem;
+/* --- استایل نتایج --- */
+#owner-name, #stall-number-result {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-red);
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color); /* خط کشی برای جداسازی */
+}
+
+#owner-name span, #stall-number-result span {
+    color: var(--accent-green);
     font-weight: 700;
-    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
-/* autocomplete */
+/* --- استایل لیست پیشنهادها --- */
 .autocomplete-container {
     position: relative;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 #owner-suggestions-list {
     position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
+    top: 100%;
     left: 0;
-    list-style: none;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    padding: 8px;
-    margin: 0;
-    max-height: 260px;
-    overflow-y: auto;
+    right: 0;
     z-index: 1000;
-}
-
-#owner-suggestions-list:empty {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: var(--shadow-md);
+    max-height: 200px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     display: none;
 }
 
+#owner-suggestions-list.active {
+    display: block;
+}
+
 #owner-suggestions-list li {
-    padding: 10px 12px;
-    border-radius: 12px;
-    font-size: 0.94rem;
-    color: var(--text-main);
+    padding: 12px 15px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background-color 0.2s ease;
 }
 
-#owner-suggestions-list li:hover,
-#owner-suggestions-list li.active {
-    background: rgba(20, 184, 166, 0.10);
-    color: var(--primary-dark);
+#owner-suggestions-list li:hover {
+    background-color: var(--bg-light);
 }
 
-/* دکمه‌ها اگر در HTML وجود داشته باشند */
-button,
-.btn {
-    appearance: none;
-    border: none;
-    border-radius: 14px;
-    height: 46px;
-    padding: 0 18px;
-    font-family: 'Vazirmatn', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: var(--transition);
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff;
-    box-shadow: 0 10px 20px rgba(15, 118, 110, 0.18);
-}
-
-button:hover,
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 24px rgba(15, 118, 110, 0.22);
-}
-
-button:active,
-.btn:active {
-    transform: translateY(0);
-}
-
-/* هایلایت غرفه در SVG */
+/* --- استایل هایلایت غرفه (با خط قرمز متحرک) --- */
 .stall-highlight {
-    fill: rgba(245, 158, 11, 0.28) !important;
-    stroke: #f59e0b !important;
-    stroke-width: 3 !important;
-    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.45));
-    animation: stallPulse 1.4s ease-in-out infinite;
+    fill: #fef08a !important; /* زرد روشن */
+    stroke: #ff0000 !important; /* رنگ قرمز خالص */
+    stroke-width: 3px !important;
+    animation: neon-border-spin 2s linear infinite; /* انیمیشن چرخش */
 }
 
-@keyframes stallPulse {
-    0%, 100% {
-        filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.35));
+/* --- انیمیشن چرخش خط نئون قرمز --- */
+@keyframes neon-border-spin {
+    0% {
+        filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000) hue-rotate(0deg);
     }
-    50% {
-        filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.55));
-    }
-}
-
-/* اسکرول‌بار */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #e8eef3;
-    border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #b8c4d1;
-    border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-
-/* Utility */
-.text-center {
-    text-align: center;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* ریسپانسیو */
-@media (max-width: 1100px) {
-    .content-grid,
-    .main-content,
-    .page-content {
-        grid-template-columns: 1fr;
-    }
-
-    .map-container,
-    .form-container,
-    .search-card {
-        width: 100%;
+    100% {
+        filter: drop-shadow(0 0 4px #ff0000) drop-shadow(0 0 8px #ff0000) drop-shadow(0 0 12px #ff0000) hue-rotate(-360deg);
     }
 }
 
-@media (max-width: 768px) {
+/* --- انیمیشن افکت نئون کارت‌ها --- */
+@keyframes neon-glow {
+    from {
+        filter: brightness(1);
+    }
+    to {
+        filter: brightness(1.2);
+    }
+}
+
+/* --- رسپانسیو برای موبایل (اصلاح شده) --- */
+@media (max-width: 600px) {
     body {
-        padding: 12px;
+        padding: 10px;
+    }
+
+    .container {
+        border-radius: 8px;
     }
 
     .main-header {
-        padding: 20px 14px;
-        border-radius: 20px;
-    }
-
-    .main-header h1 {
-        font-size: 1.45rem;
-        line-height: 1.7;
-    }
-
-    .main-header h2 {
-        font-size: 1rem;
-    }
-
-    .main-header h3 {
-        font-size: 0.92rem;
+        padding: 20px;
     }
 
     .info-card {
-        width: 100%;
-        margin: 6px 0;
-        border-radius: 16px;
-        padding: 12px 14px;
-        font-size: 0.92rem;
+        font-size: 14px;
+        padding: 8px 16px;
+        display: block;
+        margin: 8px auto;
+        width: 90%;
     }
 
+    h1 {
+        font-size: 22px;
+        margin: 20px 15px;
+    }
+
+    .map-container, .form-container {
+        padding: 15px;
+    }
+
+    .search-card {
+        padding: 20px;
+    }
+
+    /* --- اصلاحات چیدمان تاریخ و زمان در موبایل --- */
     .datetime-display {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .date-container,
-    .time-container {
-        width: 100%;
-        min-width: auto;
-    }
-
-    .map-container,
-    .form-container,
-    .search-card {
-        border-radius: 18px;
-        padding: 14px;
-    }
-
-    select,
-    input[type="text"],
-    input[type="search"],
-    input[type="number"],
-    textarea,
-    button,
-    .btn {
-        font-size: 16px; /* جلوگیری از زوم آیفون */
-    }
-
-    #current-date,
-    #current-time {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-header h1 {
-        font-size: 1.25rem;
-    }
-
-    .main-header h2 {
-        font-size: 0.92rem;
-    }
-
-    .main-header h3 {
-        font-size: 0.85rem;
-    }
-
-    .info-card {
-        font-size: 0.88rem;
-        min-height: 42px;
-    }
-
-    .map-container,
-    .form-container,
-    .search-card {
-        padding: 12px;
-    }
-
-    #owner-suggestions-list li {
-        font-size: 0.9rem;
-        padding: 9px 10px;
+        flex-direction: row; /* چیدمان افقی در یک ردیف */
+        justify-content: space-between; /* یکی در چپ، یکی در راست */
+        align-items: center;
+        font-size: 16px; /* کمی کوچکتر کردن فونت */
+        gap: 0; /* حذف فاصله اضافی */
     }
 }
