@@ -100,17 +100,21 @@ body {
         0 0 16px #ff0055;
 }
 
-/* --- استایل نمایش تاریخ و زمان (اصلاح شده) --- */
+/* --- استایل نمایش تاریخ و زمان (با چیدمان جدید) --- */
 .datetime-display {
     margin-top: 20px;
-    display: flex;
+    display: flex; /* استفاده از فلکس برای چیدمان */
     justify-content: space-between; /* تاریخ در چپ، زمان در راست */
     align-items: center;
-    font-family: 'Vazirmatn', sans-serif; /* حذف monospace برای نمایش صحیح فارسی */
+    font-family: 'Vazirmatn', sans-serif; /* فونت یکپارچه */
     font-size: 18px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 1px;
+}
+
+.date-container, .time-container {
+    /* کانتینرهای جدا برای تاریخ و زمان */
 }
 
 #current-time {
@@ -288,7 +292,7 @@ select:focus, input[type="text"]:focus {
     }
 }
 
-/* --- رسپانسیو برای موبایل (اصلاح شده) --- */
+/* --- رسپانسیو برای موبایل --- */
 @media (max-width: 600px) {
     body {
         padding: 10px;
@@ -310,6 +314,14 @@ select:focus, input[type="text"]:focus {
         width: 90%;
     }
 
+    /* --- تغییرات نمایش تاریخ و زمان در موبایل --- */
+    .datetime-display {
+        flex-direction: column; /* عمودی کردن چیدمان */
+        align-items: center;
+        gap: 8px; /* فاصله بین تاریخ و زمان */
+        font-size: 16px; /* کمی کوچکتر کردن فونت */
+    }
+
     h1 {
         font-size: 22px;
         margin: 20px 15px;
@@ -321,14 +333,5 @@ select:focus, input[type="text"]:focus {
 
     .search-card {
         padding: 20px;
-    }
-
-    /* --- اصلاحات چیدمان تاریخ و زمان در موبایل --- */
-    .datetime-display {
-        flex-direction: row; /* چیدمان افقی در یک ردیف */
-        justify-content: space-between; /* یکی در چپ، یکی در راست */
-        align-items: center;
-        font-size: 16px; /* کمی کوچکتر کردن فونت */
-        gap: 0; /* حذف فاصله اضافی */
     }
 }
